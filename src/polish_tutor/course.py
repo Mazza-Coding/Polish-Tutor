@@ -173,25 +173,61 @@ class CourseCatalog:
 
     @classmethod
     def load_bundled(cls) -> CourseCatalog:
-        resource = files("polish_tutor.data").joinpath("course_v1.yaml")
-        source = resource.read_bytes()
-        return cls._from_bytes(source, strict_counts=True)
+        root = files("polish_tutor.data")
+        resource = root.joinpath("course_v1.yaml")
+        return cls._from_bytes(
+            resource.read_bytes(),
+            strict_counts=True,
+            lesson_reader=lambda name: root.joinpath(name).read_bytes(),
+        )
 
     @classmethod
     def load_path(cls, path: Path, *, strict_counts: bool = True) -> CourseCatalog:
-        return cls._from_bytes(path.read_bytes(), strict_counts=strict_counts)
+        return cls._from_bytes(
+            path.read_bytes(),
+            strict_counts=strict_counts,
+            lesson_reader=lambda name: (path.parent / name).read_bytes(),
+        )
 
     @classmethod
-    def _from_bytes(cls, source: bytes, *, strict_counts: bool) -> CourseCatalog:
+    def _from_bytes(
+        cls,
+        source: bytes,
+        *,
+        strict_counts: bool,
+        lesson_reader=None,
+    ) -> CourseCatalog:
+        hash_source = source
         try:
             raw = yaml.safe_load(source)
             if not isinstance(raw, dict):
                 raise ValueError("course root must be a mapping")
+            lesson_files = raw.get("lesson_files")
+            if lesson_files is not None:
+                if lesson_reader is None:
+                    raise ValueError("lesson_files require a source directory")
+                if not isinstance(lesson_files, list) or not lesson_files:
+                    raise ValueError("lesson_files must be a non-empty list")
+                lessons = []
+                lesson_sources = []
+                for name in lesson_files:
+                    if not isinstance(name, str):
+                        raise ValueError("lesson file names must be strings")
+                    lesson_source = lesson_reader(name)
+                    lesson = yaml.safe_load(lesson_source)
+                    if not isinstance(lesson, dict):
+                        raise ValueError(f"lesson file {name!r} must contain a mapping")
+                    lessons.append(lesson)
+                    lesson_sources.append(lesson_source)
+                raw = dict(raw)
+                raw.pop("lesson_files")
+                raw["lessons"] = lessons
+                hash_source = source + b"\n" + b"\n".join(lesson_sources)
             expanded = expand_compact_course(raw)
             course = Course.model_validate(expanded)
         except (yaml.YAMLError, ValidationError, KeyError, TypeError, ValueError) as error:
             raise CourseValidationError(f"invalid course structure: {error}") from error
-        return cls(course, source, strict_counts=strict_counts)
+        return cls(course, hash_source, strict_counts=strict_counts)
 
     def validate(self, *, strict_counts: bool) -> None:
         errors: list[str] = []
