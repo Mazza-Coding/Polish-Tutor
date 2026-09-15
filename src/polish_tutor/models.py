@@ -28,6 +28,7 @@ class PromptKind(StrEnum):
 class ObjectiveKind(StrEnum):
     LEXICAL = "lexical"
     SYNTHESIS = "synthesis"
+    EXERCISE = "exercise"
 
 
 class SelfForm(StrEnum):
@@ -39,6 +40,8 @@ class Unit(FrozenModel):
     id: str
     order: int = Field(ge=1)
     title: str
+    source_pages: str | None = None
+    material: tuple[str, ...] = ()
 
 
 class Concept(FrozenModel):
@@ -101,8 +104,8 @@ class Objective(FrozenModel):
     def concept_matches_kind(self) -> Objective:
         if self.kind is ObjectiveKind.LEXICAL and self.concept_id is None:
             raise ValueError("lexical objectives require concept_id")
-        if self.kind is ObjectiveKind.SYNTHESIS and self.concept_id is not None:
-            raise ValueError("synthesis objectives cannot introduce a concept")
+        if self.kind is not ObjectiveKind.LEXICAL and self.concept_id is not None:
+            raise ValueError("only lexical objectives may introduce a concept")
         return self
 
     @property
