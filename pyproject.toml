@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "polish-typing-tutor"
-version = "0.3.0"
+version = "0.4.0"
 description = "An offline, typing-only Polish tutor with FSRS scheduling."
 readme = "README.md"
 requires-python = ">=3.12"
@@ -32,7 +32,7 @@ polish-tutor = "polish_tutor.cli:main"
 where = ["src"]
 
 [tool.setuptools.package-data]
-polish_tutor = ["data/*.yaml", "styles.tcss"]
+polish_tutor = ["styles.tcss"]
 
 [tool.pytest.ini_options]
 addopts = "-q"
@@ -47,4 +47,5 @@ line-length = 100
 select = ["E", "F", "I", "UP", "B", "SIM"]
 
 [tool.ruff.lint.per-file-ignores]
-"scripts/build_course.py" = ["E501"]
+"src/polish_tutor/data/teach_yourself.py" = ["E501"]
+"src/polish_tutor/data/lesson_*.py" = ["E501"]
