@@ -1,0 +1,125 @@
+id: l07
+order: 7
+title: Lesson 7 — Genitive plural adjectives, numbers, and the imperative
+source_pages: book pp. 27–31 (PDF pp. 35–39)
+material:
+- 'Genitive plural adjectives and pronouns take -ych or -ich: dobrych, dużych, małych, naszych, waszych,
+  tych, tamtych; tanich, krótkich, długich, drogich, jakich, takich; moje/twoje/czyje give moich/twoich/czyich.'
+- The genitive of dwa, trzy, cztery is dwu/dwóch, trzech, czterech. The lesson introduces pięć–dziesięć
+  and their oblique forms pięciu, sześciu, siedmiu, ośmiu, dziewięciu, dziesięciu.
+- First-conjugation imperatives include kochaj/kochajmy/kochajcie and pamiętaj/pamiętajmy/pamiętajcie.
+  Third-person and formal commands use niech; proszę is used as a polite request marker.
+- 'Vocabulary: miasto town/city; życie life; proszę please; siadać sit down/take a seat; jak how; razem
+  together; czy tak? is it so?; no to well then; więc so; drogie dear/expensive; długie long; krótkie
+  short; takie such; tanie cheap; pięć, sześć, siedem, osiem, dziewięć, dziesięć.'
+- Speech drill (book p. 31) practises pięć–dziesięć and oblique number forms in short combinations such
+  as pięciu dzieci and ośmiu/siedmiu.
+sets:
+- slug: into_english
+  label: Translate into English
+  page: book p. 30
+  items:
+  - prompt: Do not open those three windows.
+    answers:
+    - Nie otwieraj tych trzech okien.
+  - prompt: I am closing these three windows.
+    answers:
+    - Zamykam te trzy okna.
+  - prompt: I have no large, nice apples; the small ones here are very expensive.
+    answers:
+    - Nie mam dużych, ładnych jabłek, te małe tu są bardzo drogie.
+  - prompt: Dear child, why do you not know how to do this?
+    answers:
+    - Dziecko drogie, dlaczego ty tego nie umiesz?
+  - prompt: Please sit down, sir.
+    answers:
+    - Proszę, niech pan siada.
+  - prompt: Madam, Janek does not understand these three sentences. And do you understand? Yes, I understand.
+      Which three sentences do you not understand, my child? These three and this one. So altogether you
+      do not understand four sentences, is that so? Yes, madam. Well then, listen. I am listening, madam.
+    answers:
+    - Proszę pani, Janek nie rozumie tych trzech zdań. A ty rozumiesz? Tak, ja rozumiem. Których trzech
+      zdań nie rozumiesz, moje dziecko? Tych trzech i tego jednego. Więc razem czterech zdań nie rozumiesz,
+      czy tak? Tak, proszę pani. No to słuchaj. Słucham, proszę pani.
+  - prompt: How nicely she sings — listen!
+    answers:
+    - Jak ona ładnie śpiewa — słuchajcie.
+  - prompt: Please do not read this, sir.
+    answers:
+    - Niech pan tego nie czyta.
+  - prompt: Eggs are cheap now, but butter is very expensive.
+    answers:
+    - Jajka są teraz tanie, ale masło jest bardzo drogie.
+  - prompt: Do not eat this.
+    answers:
+    - Nie jedz tego.
+  - prompt: We do not have such long holidays.
+    answers:
+    - My nie mamy takich długich świąt.
+  - prompt: Your exercise is very short.
+    answers:
+    - Twoje zadanie jest bardzo krótkie.
+  - prompt: I am going to town. I am going from town.
+    answers:
+    - Idę do miasta. Idę z miasta.
+  - prompt: We are coming back from town. They are coming back to town.
+    answers:
+    - Wracamy z miasta. Wracają do miasta.
+  - prompt: Life is short.
+    answers:
+    - Życie jest krótkie.
+- slug: into_polish
+  label: Translate into Polish
+  page: book p. 30
+  items:
+  - prompt: I am not taking those four eggs.
+    answers:
+    - Nie biorę tych czterech jajek.
+  - prompt: Do not let us wait for breakfast.
+    answers:
+    - Nie czekajmy na śniadanie.
+  - prompt: Please read.
+    answers:
+    - Proszę czytać.
+  - prompt: Will you please sit down? (to a couple)
+    answers:
+    - Proszę państwa, niech państwo siadają.
+  - prompt: I do not remember those five exercises.
+    answers:
+    - Nie pamiętam tych pięciu zadań.
+  - prompt: Have you not got my glasses?
+    answers:
+    - Nie masz moich szkieł?
+  - prompt: Children, do not eat that!
+    answers:
+    - Dzieci, nie jedzcie tego!
+  - prompt: What is she looking for? She is looking for those five periodicals.
+    answers:
+    - Czego ona szuka? Szuka tych pięciu pism.
+  - prompt: We now have many evening meetings.
+    answers:
+    - Mamy teraz dużo zebrań wieczornych.
+  - prompt: I am reading two short sentences from your exercise.
+    answers:
+    - Czytam dwa krótkie zdania z twojego zadania.
+  - prompt: He has not got such tools.
+    answers:
+    - Nie ma takich narzędzi.
+  - prompt: We are looking for a flat.
+    answers:
+    - Szukamy mieszkania.
+  - prompt: There are few large flats.
+    answers:
+    - Jest mało dużych mieszkań.
+  - prompt: Please do not wait for the children.
+    answers:
+    - Proszę nie czekać na dzieci.
+  - prompt: I do not know these three Polish cities.
+    answers:
+    - Nie znam tych trzech polskich miast.
+  - prompt: Life here is very pleasant.
+    answers:
+    - Życie tu jest bardzo przyjemne.
+  - prompt: He sits down by the window.
+    answers:
+    - Siada koło okna.

@@ -3,8 +3,6 @@ from __future__ import annotations
 import random
 from datetime import timedelta
 
-from fsrs import Rating
-
 from polish_tutor.app import (
     PauseScreen,
     PolishTutorApp,
@@ -13,9 +11,12 @@ from polish_tutor.app import (
     StudyScreen,
 )
 from polish_tutor.db import Profile
-from polish_tutor.engine import StudyEngine, form_exposures
+from polish_tutor.engine import StudyEngine
 from polish_tutor.models import SelfForm
 from polish_tutor.scheduling import SchedulingService
+
+
+FIRST_OBJECTIVE = "l01.read_translate"
 
 
 def make_app(catalog, database, clock, *, profile: Profile | None = None, setup: bool = False):
@@ -44,14 +45,21 @@ async def test_first_run_opens_setup(catalog, database, clock) -> None:
         assert "Polish Typing Tutor" in str(app.screen.query_one("#setup-title").render())
 
 
-async def test_existing_profile_opens_study_and_submits_intro(catalog, database, clock) -> None:
+async def test_existing_profile_opens_book_course_and_submits_intro(
+    catalog, database, clock
+) -> None:
     app = make_app(catalog, database, clock, profile=Profile(SelfForm.MASCULINE))
-    async with app.run_test(size=(80, 24)) as pilot:
+    async with app.run_test(size=(100, 30)) as pilot:
         assert isinstance(app.screen, StudyScreen)
+        assert "Lesson 1" in str(app.screen.query_one("#phase").render())
+        context = str(app.screen.query_one("#context").render())
+        assert "This is a pen" in context
+        assert "Neuter nouns" in context
+        assert "To jest pióro" in str(app.screen.query_one("#model").render())
         answer = app.screen.query_one("#answer")
-        answer.value = "Tak."
+        answer.value = "To jest pióro."
         await pilot.press("enter")
-        assert database.progress_for("lex.tak").introduced
+        assert database.progress_for(FIRST_OBJECTIVE).introduced
         assert "Introduced" in str(app.screen.query_one("#feedback").render())
 
 
@@ -71,58 +79,27 @@ async def test_review_hint_and_reveal_keys(catalog, database, clock) -> None:
     profile = Profile(SelfForm.MASCULINE)
     database.save_profile(profile, clock.now())
     scheduler = SchedulingService(enable_fuzzing=False)
-    progress = database.progress_for("lex.tak")
-    database.introduce("lex.tak", scheduler.new_card(progress.id, clock.now()), clock.now())
+    progress = database.progress_for(FIRST_OBJECTIVE)
+    database.introduce(FIRST_OBJECTIVE, scheduler.new_card(progress.id, clock.now()), clock.now())
     clock.advance(timedelta(seconds=20))
     app = make_app(catalog, database, clock)
-    async with app.run_test(size=(80, 24)) as pilot:
+    async with app.run_test(size=(100, 30)) as pilot:
         assert isinstance(app.screen, StudyScreen)
         await pilot.press("tab")
-        assert "affirmative" in str(app.screen.query_one("#feedback").render()).casefold()
+        assert "Restore the omitted word" in str(app.screen.query_one("#feedback").render())
         await pilot.press("ctrl+r")
-        assert "Tak" in str(app.screen.query_one("#model").render())
+        assert "jest" in str(app.screen.query_one("#model").render())
 
 
-async def test_unseen_inflection_uses_new_form_copy_screen(catalog, database, clock) -> None:
-    objective = catalog.objectives["lex.byc"]
-    scheduler = SchedulingService(enable_fuzzing=False)
-    progress = database.progress_for(objective.id)
-    card = scheduler.new_card(progress.id, clock.now())
-    database.introduce(
-        objective.id,
-        card,
-        clock.now(),
-        exposures=form_exposures(objective.model.polish),
-    )
-    clock.advance(timedelta(seconds=20))
-    card, log = scheduler.review(card, Rating.Good, clock.now(), 500)
-    database.record_review(
-        objective_id=objective.id,
-        variant_id="lex.byc.c1",
-        card=card,
-        review_log=log,
-        rating=Rating.Good,
-        answer_class="exact",
-        attempt_count=1,
-        first_try=True,
-        hint_used=False,
-        duration_ms=500,
-        normalized_ms_per_char=125.0,
-        reviewed_at=clock.now(),
-        clean_cloze_increment=True,
-        exposures=(("byc", "jest"),),
-    )
-    clock.advance(timedelta(minutes=2))
-
+async def test_status_counts_exercise_sets_for_conceptless_book_corpus(
+    catalog, database, clock
+) -> None:
     app = make_app(catalog, database, clock, profile=Profile(SelfForm.MASCULINE))
-    async with app.run_test(size=(80, 24)) as pilot:
+    async with app.run_test(size=(100, 30)):
         assert isinstance(app.screen, StudyScreen)
-        assert "NEW FORM" in str(app.screen.query_one("#phase").render())
-        assert "jestem" in str(app.screen.query_one("#model").render())
-        answer = app.screen.query_one("#answer")
-        answer.value = "jestem"
-        await pilot.press("enter")
-        assert "recall in 20s" in str(app.screen.query_one("#feedback").render())
+        status = str(app.screen.query_one("#status").render())
+        assert "Exercise sets 0/17" in status
+        assert "Ready words" not in status
 
 
 async def test_pause_menu_can_delete_progress_only_after_exact_confirmation(
@@ -130,12 +107,11 @@ async def test_pause_menu_can_delete_progress_only_after_exact_confirmation(
 ) -> None:
     profile = Profile(SelfForm.FEMININE)
     scheduler = SchedulingService(enable_fuzzing=False)
-    progress = database.progress_for("lex.tak")
+    progress = database.progress_for(FIRST_OBJECTIVE)
     database.introduce(
-        "lex.tak",
+        FIRST_OBJECTIVE,
         scheduler.new_card(progress.id, clock.now()),
         clock.now(),
-        exposures=(("tak", "tak"),),
     )
     app = make_app(catalog, database, clock, profile=profile)
 
@@ -149,13 +125,13 @@ async def test_pause_menu_can_delete_progress_only_after_exact_confirmation(
         confirmation.value = "delete"
         await pilot.press("enter")
         assert isinstance(app.screen, ResetProgressScreen)
-        assert database.progress_for("lex.tak").introduced
+        assert database.progress_for(FIRST_OBJECTIVE).introduced
         assert "Nothing was deleted" in str(app.screen.query_one("#reset-error").render())
 
         confirmation.value = "DELETE"
         await pilot.press("enter")
         await pilot.pause()
         assert isinstance(app.screen, StudyScreen)
-        assert not database.progress_for("lex.tak").introduced
+        assert not database.progress_for(FIRST_OBJECTIVE).introduced
         assert database.get_profile() == profile
         assert "progress deleted" in str(app.screen.query_one("#feedback").render())

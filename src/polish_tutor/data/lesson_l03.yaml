@@ -1,0 +1,119 @@
+id: l03
+order: 3
+title: Lesson 3 — Questions and interrogatives
+source_pages: book pp. 13–16 (PDF pp. 21–24)
+material:
+- Yes/no questions can be introduced with czy, while colloquial speech can use the statement word order
+  with question intonation.
+- Question words include kto who, co what, jaki what sort of, który which, and czyj whose. With pan/pani,
+  the question word normally precedes the formal form.
+- The lesson contrasts Co czytasz? / Co pan czyta? with Kto czyta?, Jakie pisma czytasz?, Które zadanie
+  czytasz?, and Czyje zadanie czytasz?.
+- 'Vocabulary: jabłko apple; pismo periodical/writing; najlepsze best; ładne nice; słowo word; wieczorne
+  evening; czyje whose; jakie what sort of; które which; kto who; co what; czy whether; tak yes; nie no.'
+- The printed exercise also asks the learner to answer the fifteen Polish questions in Polish; because
+  those answers are deliberately open-ended, the tutor keeps the questions as translation/recall material
+  rather than imposing one arbitrary response.
+- Speech drill (book p. 17) practises czy/czyje/wieczorne, nasz/wasz, and the pronunciation of jabłko.
+sets:
+- slug: into_english
+  label: Translate into English
+  page: book p. 16
+  items:
+  - prompt: Which window is large?
+    answers:
+    - Które okno jest duże?
+  - prompt: What sort of window is this?
+    answers:
+    - Jakie jest to okno?
+  - prompt: What are our windows like?
+    answers:
+    - Jakie są nasze okna?
+  - prompt: What have you for breakfast?
+    answers:
+    - Co masz na śniadanie?
+  - prompt: Who has apples?
+    answers:
+    - Kto ma jabłka?
+  - prompt: What is he opening?
+    answers:
+    - Co on otwiera?
+  - prompt: What is she closing?
+    answers:
+    - Co ona zamyka?
+  - prompt: Who is waiting for breakfast?
+    answers:
+    - Kto czeka na śniadanie?
+  - prompt: Whose are these periodicals?
+    answers:
+    - Czyje są te pisma?
+  - prompt: Whose exercise is this?
+    answers:
+    - Czyje jest to zadanie?
+  - prompt: Who has my pen?
+    answers:
+    - Kto ma moje pióro?
+  - prompt: What is the window that you are closing like?
+    answers:
+    - Jakie jest okno, które zamykasz?
+  - prompt: Which periodicals are you reading? (formal, to a man)
+    answers:
+    - Które pisma pan czyta?
+  - prompt: What is the sea like?
+    answers:
+    - Jakie jest morze?
+  - prompt: Is your flat large?
+    answers:
+    - Czy wasze mieszkanie jest duże?
+- slug: into_polish
+  label: Translate into Polish
+  page: book p. 16
+  items:
+  - prompt: Whose exercise are you reading?
+    answers:
+    - Czyje zadanie czytasz?
+    - Czyje zadanie czytacie?
+    - Czyje zadanie pan czyta?
+    - Czyje zadanie pani czyta?
+    - Czyje zadanie panowie czytają?
+    - Czyje zadanie panie czytają?
+    - Czyje zadanie państwo czytają?
+  - prompt: Which periodical is the best?
+    answers:
+    - Które pismo jest najlepsze?
+  - prompt: Whose apples are the best?
+    answers:
+    - Czyje jabłka są najlepsze?
+  - prompt: What pen have you? (formal, to a lady)
+    answers:
+    - Jakie pióro ma pani?
+    - Jakie pióro pani ma?
+  - prompt: Who has a nice new flat?
+    answers:
+    - Kto ma ładne nowe mieszkanie?
+  - prompt: Whose words do we remember?
+    answers:
+    - Czyje słowa pamiętamy?
+  - prompt: Are the evening periodicals good?
+    answers:
+    - Czy pisma wieczorne są dobre?
+    - Pisma wieczorne są dobre?
+  - prompt: Is the sea deep?
+    answers:
+    - Czy morze jest głębokie?
+  - prompt: What are we waiting for?
+    answers:
+    - Na co czekamy?
+  - prompt: He remembers three words — what words?
+    answers:
+    - On pamięta trzy słowa — jakie słowa?
+    - Pamięta trzy słowa. Jakie słowa?
+  - prompt: What periodicals do you read? (formal, to a gentleman)
+    answers:
+    - Jakie pisma pan czyta?
+  - prompt: Who has your exercise? (your = thy)
+    answers:
+    - Kto ma twoje zadanie?
+  - prompt: Who has your exercises? (your = wasze)
+    answers:
+    - Kto ma wasze zadania?

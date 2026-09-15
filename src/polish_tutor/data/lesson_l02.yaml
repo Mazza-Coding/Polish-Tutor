@@ -1,0 +1,135 @@
+id: l02
+order: 2
+title: Lesson 2 — First conjugation, personal pronouns, and formal address
+source_pages: book pp. 10–13 (PDF pp. 18–21)
+material:
+- First-conjugation verbs such as kochać, czytać, and zamykać have present-tense forms in -am, -asz, -a,
+  -amy, -acie, -ają.
+- The lesson gives the personal pronouns ja, ty, on, ona, ono, my, wy, oni, one and notes that Polish
+  normally omits them when the verb ending makes the person clear.
+- Formal address uses pan/pani with third-person singular forms and panowie/panie/państwo with third-person
+  plural forms.
+- The accusative marks the direct object and follows na in motion-to expressions such as idę na zebranie
+  and in czekać na, to wait for.
+- Vocabulary includes pan/pani, mieszkanie flat, śniadanie breakfast, święto holiday, zadanie exercise,
+  zebranie meeting, czekać wait for, czytać read, otwierać open, pamiętać remember, zamykać close.
+- Speech drill (book p. 13) practises syllable division and forms from zadanie, czekamy/czytamy, mieszkanie,
+  śniadanie, święto, pamiętać, czytać, otwierać, and formal/familiar pronouns.
+sets:
+- slug: into_english
+  label: Translate into English
+  page: book p. 12
+  items:
+  - prompt: We are closing the windows.
+    answers:
+    - Zamykamy okna.
+  - prompt: I am closing the window.
+    answers:
+    - Zamykam okno.
+  - prompt: They are opening this box.
+    answers:
+    - Otwierają to pudełko.
+  - prompt: I am reading your exercise.
+    answers:
+    - Czytam twoje zadanie.
+  - prompt: She is reading my exercise.
+    answers:
+    - Ona czyta moje zadanie.
+  - prompt: You have a nice flat.
+    answers:
+    - Macie ładne mieszkanie.
+  - prompt: Today we have a holiday.
+    answers:
+    - Dziś mamy święto.
+  - prompt: We have two holidays.
+    answers:
+    - Mamy dwa święta.
+  - prompt: He loves children.
+    answers:
+    - On kocha dzieci.
+  - prompt: You have small children (formal, to a woman).
+    answers:
+    - Pani ma małe dzieci.
+  - prompt: You remember this flat.
+    answers:
+    - Pamiętasz to mieszkanie.
+  - prompt: You remember these holidays.
+    answers:
+    - Pamiętacie te święta.
+  - prompt: They are waiting for breakfast.
+    answers:
+    - Czekają na śniadanie.
+  - prompt: They (men) have a meeting today.
+    answers:
+    - Oni mają dziś zebranie.
+  - prompt: They (women) have a nice flat.
+    answers:
+    - One mają ładne mieszkanie.
+  - prompt: She is waiting for the meeting.
+    answers:
+    - Ona czeka na zebranie.
+- slug: formal_address
+  label: 'Familiar and formal address: ‘you remember’'
+  page: book p. 12
+  items:
+  - prompt: You remember.
+    answers:
+    - Pamiętasz.
+    - Pamiętacie.
+    - Pan pamięta.
+    - Pani pamięta.
+    - Panowie pamiętają.
+    - Panie pamiętają.
+    - Państwo pamiętają.
+- slug: into_polish
+  label: Translate into Polish
+  page: book p. 12
+  items:
+  - prompt: The child is opening this large box.
+    answers:
+    - Dziecko otwiera to duże pudełko.
+  - prompt: The children are opening this large box.
+    answers:
+    - Dzieci otwierają to duże pudełko.
+  - prompt: I remember that flat.
+    answers:
+    - Pamiętam tamto mieszkanie.
+    - Pamiętam to mieszkanie.
+  - prompt: We are waiting for these new pens.
+    answers:
+    - Czekamy na te nowe pióra.
+  - prompt: They (men) have a nice flat.
+    answers:
+    - Oni mają ładne mieszkanie.
+  - prompt: Your (thy) exercise is good.
+    answers:
+    - Twoje zadanie jest dobre.
+  - prompt: They (women) are reading the exercises.
+    answers:
+    - One czytają zadania.
+  - prompt: You are reading my exercise (formal, to a man).
+    answers:
+    - Pan czyta moje zadanie.
+  - prompt: Today you have two exercises.
+    answers:
+    - Dziś masz dwa zadania.
+    - Dziś macie dwa zadania.
+    - Dziś pan ma dwa zadania.
+    - Dziś pani ma dwa zadania.
+    - Dziś państwo mają dwa zadania.
+  - prompt: I am waiting for breakfast.
+    answers:
+    - Czekam na śniadanie.
+  - prompt: We have a meeting today.
+    answers:
+    - Dziś mamy zebranie.
+    - Mamy dziś zebranie.
+  - prompt: You (women, formal) are closing the windows.
+    answers:
+    - Panie zamykają okna.
+  - prompt: I love the sea.
+    answers:
+    - Kocham morze.
+  - prompt: Today is a holiday.
+    answers:
+    - Dziś jest święto.

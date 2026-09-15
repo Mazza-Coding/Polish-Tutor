@@ -46,7 +46,7 @@ class SetupScreen(Screen[None]):
             )
             yield Static(
                 "There is no daily limit. Due reviews take priority; otherwise "
-                "the next eligible objective starts immediately.",
+                "the next eligible exercise set starts immediately.",
                 markup=False,
             )
             yield Static("", id="setup-error", markup=False)
@@ -199,11 +199,17 @@ class StudyScreen(Screen[None]):
 
     def _update_status(self) -> None:
         status = self.engine.status()
-        self.query_one("#status", Static).update(
-            f"Due {status.due_now}  ·  Introduced {status.introduced_concepts}/"
-            f"{status.total_concepts}"
-            f"  ·  Ready words {status.ready_concepts}/{status.total_concepts}"
-        )
+        progress = tuple(item for item in self.engine.database.all_progress() if item.active)
+        introduced = sum(item.introduced for item in progress)
+        parts = [
+            f"Due {status.due_now}",
+            f"Exercise sets {introduced}/{len(progress)}",
+        ]
+        if status.total_concepts:
+            parts.append(
+                f"Ready words {status.ready_concepts}/{status.total_concepts}"
+            )
+        self.query_one("#status", Static).update("  ·  ".join(parts))
 
     def show_next(self) -> None:
         self.awaiting_continue = False
@@ -220,7 +226,18 @@ class StudyScreen(Screen[None]):
             objective = self.item.objective
             unit = self.engine.catalog.units[objective.unit_id]
             self.query_one("#phase", Static).update(f"NEW · {unit.title}")
-            self.query_one("#context", Static).update(objective.model.english)
+            context_parts = []
+            if unit.source_pages:
+                context_parts.append(unit.source_pages)
+            first_in_lesson = next(
+                item for item in self.engine.catalog.objectives_in_order
+                if item.unit_id == unit.id
+            )
+            if objective.id == first_in_lesson.id and unit.material:
+                lesson_material = "\n".join(f"• {note}" for note in unit.material)
+                context_parts.append(f"Lesson material:\n{lesson_material}")
+            context_parts.append(objective.model.english)
+            self.query_one("#context", Static).update("\n\n".join(context_parts))
             self.query_one("#prompt", Static).update("Copy the Polish model:")
             self.query_one("#model", Static).update(objective.model.polish.text)
         elif isinstance(self.item, FormIntroductionItem):

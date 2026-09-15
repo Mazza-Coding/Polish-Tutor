@@ -455,9 +455,11 @@ def form_exposures(mapping: TokenConceptMap) -> frozenset[tuple[str, str]]:
         for token, concept_id in zip(
             polish_tokens(mapping.text), mapping.token_concepts, strict=True
         )
-        if concept_id != "@name"
+        if not concept_id.startswith("@")
     )
 
 
 def answer_concepts(mapping: TokenConceptMap) -> frozenset[str]:
-    return frozenset(concept_id for concept_id in mapping.token_concepts if concept_id != "@name")
+    return frozenset(
+        concept_id for concept_id in mapping.token_concepts if not concept_id.startswith("@")
+    )
