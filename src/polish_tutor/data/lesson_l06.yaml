@@ -1,0 +1,123 @@
+id: l06
+order: 6
+title: Lesson 6 — Neuter genitive plural and vowel changes
+source_pages: book pp. 23–27 (PDF pp. 31–35)
+material:
+- 'The genitive plural of many neuter nouns is made by dropping final -o or -e: piór, biur, pism, drzew,
+  mieszkań, zadań, uczuć.'
+- 'The lesson explains spelling with -nie/-cie, vowel interchanges such as o→ó and e→a in some words,
+  and insertion of e before difficult final consonant groups: jajek, jabłek, pudełek, biurek; okno gives
+  okien.'
+- Some neuter nouns in -e take -i or -y in the genitive plural, and dziecko has dzieci in both nominative
+  and genitive plural.
+- 'Vocabulary: narzędzie tool; przymierze alliance; uczucie feeling; zajęcie occupation; szkła glasses;
+  spadać z fall from; jest mało there is little/are few; jest dużo there is much/are many; brytyjskie
+  British; polsko-brytyjskie Polish-British; przyjemne pleasant; teraz now.'
+- Speech drill (book p. 27) practises przy-, przymierze, uczucie, zajęcie and narzędzie, including consonant
+  groups and syllable division.
+sets:
+- slug: into_english
+  label: Translate into English
+  page: book p. 26
+  items:
+  - prompt: I have apples. I have no apples. I have many apples.
+    answers:
+    - Mam jabłka. Nie mam jabłek. Mam dużo jabłek.
+  - prompt: I read exercises. I do not read exercises.
+    answers:
+    - Czytam zadania. Nie czytam zadań.
+  - prompt: What are you looking for? We are looking for boxes.
+    answers:
+    - Czego szukacie? Szukamy pudełek.
+  - prompt: They are coming back from offices.
+    answers:
+    - Wracają z biur.
+  - prompt: We have many periodicals for the children.
+    answers:
+    - Mamy dużo pism dla dzieci.
+  - prompt: I am not taking the glasses.
+    answers:
+    - Nie biorę szkieł.
+  - prompt: You are not opening the windows.
+    answers:
+    - Nie otwieracie okien.
+  - prompt: There are few flats.
+    answers:
+    - Jest mało mieszkań.
+  - prompt: This is a small flat. Here are small flats.
+    answers:
+    - To jest małe mieszkanie. Tu są małe mieszkania.
+  - prompt: Apples fall from trees.
+    answers:
+    - Jabłka spadają z drzew.
+  - prompt: The children now have many occupations.
+    answers:
+    - Dzieci mają teraz dużo zajęć.
+  - prompt: She puts the pens away into boxes.
+    answers:
+    - Ona chowa pióra do pudełek.
+  - prompt: It is a very pleasant feeling.
+    answers:
+    - Jest to bardzo przyjemne uczucie.
+  - prompt: What tools have you? I have no tools; I am waiting for tools.
+    answers:
+    - Jakie masz narzędzia? Nie mam narzędzi, czekam na narzędzia.
+- slug: plural_change
+  label: Exercise 1 — Change the sentences into the plural
+  page: book p. 26
+  items:
+  - prompt: 'Plural of: Nie zamykasz okna.'
+    answers:
+    - Nie zamykacie okien.
+  - prompt: 'Plural of: Wracasz z pola.'
+    answers:
+    - Wracacie z pól.
+  - prompt: 'Plural of: Nie je śniadania.'
+    answers:
+    - Nie jedzą śniadań.
+  - prompt: 'Plural of: Nie otwieram pudełka.'
+    answers:
+    - Nie otwieramy pudełek.
+  - prompt: 'Plural of: Nie znam uczucia.'
+    answers:
+    - Nie znamy uczuć.
+  - prompt: 'Plural of: Szuka pióra.'
+    answers:
+    - Szukają piór.
+- slug: genitive_forms
+  label: Exercise 2 — Genitive singular and plural
+  page: book p. 27
+  items:
+  - prompt: pole — give the genitive singular and plural
+    answers:
+    - pola, pól
+  - prompt: morze — give the genitive singular and plural
+    answers:
+    - morza, mórz
+  - prompt: pismo — give the genitive singular and plural
+    answers:
+    - pisma, pism
+  - prompt: przymierze — give the genitive singular and plural
+    answers:
+    - przymierza, przymierzy
+  - prompt: słowo — give the genitive singular and plural
+    answers:
+    - słowa, słów
+  - prompt: święto — give the genitive singular and plural
+    answers:
+    - święta, świąt
+  - prompt: narzędzie — give the genitive singular and plural
+    answers:
+    - narzędzia, narzędzi
+  - prompt: zebranie — give the genitive singular and plural
+    answers:
+    - zebrania, zebrań
+  - prompt: szkło — give the genitive singular and plural
+    answers:
+    - szkła, szkieł
+  - prompt: opowiadanie — give the genitive singular and plural
+    answers:
+    - opowiadania, opowiadań
+  - prompt: uczucie — give the genitive singular and plural
+    answers:
+    - uczucia, uczuć
