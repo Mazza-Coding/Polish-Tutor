@@ -11,16 +11,20 @@ from polish_tutor.models import SelfForm
 from polish_tutor.scheduling import SchedulingService
 
 
+FIRST_OBJECTIVE = "l01.read_translate"
+FIRST_CLOZE = f"{FIRST_OBJECTIVE}.c1"
+
+
 def test_profile_update_preserves_progress(database, catalog, clock) -> None:
     database.save_profile(Profile(SelfForm.MASCULINE), clock.now())
-    progress = database.progress_for("lex.tak")
+    progress = database.progress_for(FIRST_OBJECTIVE)
     scheduler = SchedulingService(enable_fuzzing=False)
     card = scheduler.new_card(progress.id, clock.now())
-    database.introduce("lex.tak", card, clock.now())
+    database.introduce(FIRST_OBJECTIVE, card, clock.now())
 
     database.save_profile(Profile(SelfForm.FEMININE), clock.now())
     assert database.get_profile() == Profile(SelfForm.FEMININE)
-    assert database.progress_for("lex.tak").introduced
+    assert database.progress_for(FIRST_OBJECTIVE).introduced
 
 
 def test_database_round_trips_fsrs_card(tmp_path, catalog, clock) -> None:
@@ -28,28 +32,28 @@ def test_database_round_trips_fsrs_card(tmp_path, catalog, clock) -> None:
     scheduler = SchedulingService(enable_fuzzing=False)
     with Database(path) as first:
         first.sync_course(catalog, clock.now())
-        progress = first.progress_for("lex.tak")
+        progress = first.progress_for(FIRST_OBJECTIVE)
         card = scheduler.new_card(progress.id, clock.now())
-        first.introduce("lex.tak", card, clock.now(), exposures=(("tak", "tak"),))
+        first.introduce(FIRST_OBJECTIVE, card, clock.now())
 
     with Database(path) as reopened:
-        loaded = reopened.progress_for("lex.tak")
+        loaded = reopened.progress_for(FIRST_OBJECTIVE)
         assert loaded.card is not None
         assert loaded.card.due == clock.now() + timedelta(seconds=20)
         assert reopened.next_due() == loaded.card.due
-        assert reopened.known_forms() == {("tak", "tak")}
+        assert reopened.known_forms() == set()
 
 
 def test_review_write_is_atomic(database, catalog, clock) -> None:
     scheduler = SchedulingService(enable_fuzzing=False)
-    progress = database.progress_for("lex.tak")
+    progress = database.progress_for(FIRST_OBJECTIVE)
     card = scheduler.new_card(progress.id, clock.now())
-    database.introduce("lex.tak", card, clock.now())
+    database.introduce(FIRST_OBJECTIVE, card, clock.now())
     clock.advance(timedelta(seconds=20))
     card, log = scheduler.review(card, Rating.Good, clock.now(), 500)
     database.record_review(
-        objective_id="lex.tak",
-        variant_id="lex.tak.c1",
+        objective_id=FIRST_OBJECTIVE,
+        variant_id=FIRST_CLOZE,
         card=card,
         review_log=log,
         rating=Rating.Good,
@@ -62,28 +66,23 @@ def test_review_write_is_atomic(database, catalog, clock) -> None:
         reviewed_at=clock.now(),
         clean_cloze_increment=True,
     )
-    loaded = database.progress_for("lex.tak")
+    loaded = database.progress_for(FIRST_OBJECTIVE)
     assert loaded.clean_cloze_count == 1
-    assert database.variant_history("lex.tak")["lex.tak.c1"][0] == 1
+    assert database.variant_history(FIRST_OBJECTIVE)[FIRST_CLOZE][0] == 1
 
 
 def test_reset_progress_is_transactional_and_keeps_profile(database, catalog, clock) -> None:
     profile = Profile(SelfForm.FEMININE)
     database.save_profile(profile, clock.now())
     scheduler = SchedulingService(enable_fuzzing=False)
-    progress = database.progress_for("lex.tak")
+    progress = database.progress_for(FIRST_OBJECTIVE)
     card = scheduler.new_card(progress.id, clock.now())
-    database.introduce(
-        "lex.tak",
-        card,
-        clock.now(),
-        exposures=(("tak", "tak"),),
-    )
+    database.introduce(FIRST_OBJECTIVE, card, clock.now())
     clock.advance(timedelta(seconds=20))
     card, log = scheduler.review(card, Rating.Good, clock.now(), 500)
     database.record_review(
-        objective_id="lex.tak",
-        variant_id="lex.tak.c1",
+        objective_id=FIRST_OBJECTIVE,
+        variant_id=FIRST_CLOZE,
         card=card,
         review_log=log,
         rating=Rating.Good,
@@ -95,14 +94,13 @@ def test_reset_progress_is_transactional_and_keeps_profile(database, catalog, cl
         normalized_ms_per_char=166.7,
         reviewed_at=clock.now(),
         clean_cloze_increment=True,
-        exposures=(("tak", "tak"),),
     )
 
     database.reset_progress()
 
     assert database.get_profile() == profile
     assert database.known_forms() == set()
-    assert database.variant_history("lex.tak") == {}
+    assert database.variant_history(FIRST_OBJECTIVE) == {}
     assert database.connection.execute("SELECT COUNT(*) FROM review_log").fetchone()[0] == 0
     assert all(
         progress.card is None
@@ -113,6 +111,21 @@ def test_reset_progress_is_transactional_and_keeps_profile(database, catalog, cl
         and progress.pending_variant_id is None
         for progress in database.all_progress()
     )
+
+
+def test_course_sync_deactivates_legacy_objectives_without_deleting_them(
+    database, catalog, clock
+) -> None:
+    with database.transaction() as connection:
+        connection.execute(
+            "INSERT INTO card_progress(objective_id, active) VALUES ('lex.tak', 1)"
+        )
+
+    database.sync_course(catalog, clock.now())
+
+    legacy = database.progress_for("lex.tak")
+    assert not legacy.active
+    assert database.progress_for(FIRST_OBJECTIVE).active
 
 
 def test_corrupt_database_is_reported_without_replacement(tmp_path) -> None:
@@ -184,8 +197,7 @@ def test_version_two_profile_migration_removes_limit_and_keeps_self_form(tmp_pat
 
     with Database(path) as migrated:
         columns = {
-            row["name"]
-            for row in migrated.connection.execute("PRAGMA table_info(profile)").fetchall()
+            row["name"] for row in migrated.connection.execute("PRAGMA table_info(profile)").fetchall()
         }
         assert migrated.get_profile() == Profile(SelfForm.FEMININE)
         assert "daily_new_limit" not in columns
