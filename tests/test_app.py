@@ -52,7 +52,9 @@ async def test_existing_profile_opens_book_course_and_submits_intro(
     async with app.run_test(size=(100, 30)) as pilot:
         assert isinstance(app.screen, StudyScreen)
         assert "Lesson 1" in str(app.screen.query_one("#phase").render())
-        assert "This is a pen" in str(app.screen.query_one("#context").render())
+        context = str(app.screen.query_one("#context").render())
+        assert "This is a pen" in context
+        assert "Neuter nouns" in context
         assert "To jest pióro" in str(app.screen.query_one("#model").render())
         answer = app.screen.query_one("#answer")
         answer.value = "To jest pióro."
