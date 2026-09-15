@@ -225,7 +225,7 @@ class CourseCatalog:
                 hash_source = source + b"\n" + b"\n".join(lesson_sources)
             expanded = expand_compact_course(raw)
             course = Course.model_validate(expanded)
-        except (yaml.YAMLError, ValidationError, KeyError, TypeError, ValueError) as error:
+        except (yaml.YAMLError, ValidationError, KeyError, TypeError, ValueError, OSError) as error:
             raise CourseValidationError(f"invalid course structure: {error}") from error
         return cls(course, hash_source, strict_counts=strict_counts)
 
@@ -392,7 +392,9 @@ class CourseCatalog:
                 f"expected {EXPECTED_BUNDLED_VARIANT_COUNT} variants, found {variant_count}"
             )
         if self.course.concepts:
-            errors.append("the bundled Teach Yourself corpus should not contain legacy lexeme concepts")
+            errors.append(
+                "the bundled Teach Yourself corpus should not contain legacy lexeme concepts"
+            )
         for unit in self.course.units:
             if not unit.source_pages:
                 errors.append(f"unit {unit.id}: missing source_pages")
