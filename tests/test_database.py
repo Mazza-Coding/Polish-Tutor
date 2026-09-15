@@ -197,7 +197,8 @@ def test_version_two_profile_migration_removes_limit_and_keeps_self_form(tmp_pat
 
     with Database(path) as migrated:
         columns = {
-            row["name"] for row in migrated.connection.execute("PRAGMA table_info(profile)").fetchall()
+            row["name"]
+            for row in migrated.connection.execute("PRAGMA table_info(profile)").fetchall()
         }
         assert migrated.get_profile() == Profile(SelfForm.FEMININE)
         assert "daily_new_limit" not in columns
