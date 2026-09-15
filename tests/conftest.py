@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import random
 from datetime import UTC, datetime
+from pathlib import Path
 
 import pytest
 
@@ -14,7 +15,9 @@ from polish_tutor.scheduling import FakeClock, SchedulingService
 
 @pytest.fixture(scope="session")
 def catalog() -> CourseCatalog:
-    return CourseCatalog.load_bundled()
+    # Preserve the fixed examples used by the existing engine/UI regression tests.
+    # This fixture is test-only; application startup loads the textbook corpus.
+    return CourseCatalog.load_path(Path(__file__).parent / "fixtures" / "legacy_course_v1.yaml")
 
 
 @pytest.fixture
@@ -31,11 +34,7 @@ def database(tmp_path, catalog: CourseCatalog, clock: FakeClock):
 
 
 @pytest.fixture
-def engine(
-    catalog: CourseCatalog,
-    database: Database,
-    clock: FakeClock,
-) -> StudyEngine:
+def engine(catalog: CourseCatalog, database: Database, clock: FakeClock) -> StudyEngine:
     database.save_profile(Profile(SelfForm.MASCULINE), clock.now())
     return StudyEngine(
         catalog=catalog,

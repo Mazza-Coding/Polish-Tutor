@@ -1,9 +1,9 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import re
 from collections import Counter
-from importlib.resources import files
 from pathlib import Path
 
 import yaml
@@ -56,9 +56,11 @@ class CourseCatalog:
 
     @classmethod
     def load_bundled(cls) -> CourseCatalog:
-        resource = files("polish_tutor.data").joinpath("course_v1.yaml")
-        source = resource.read_bytes()
-        return cls._from_bytes(source, strict_counts=True)
+        from polish_tutor.book import build_course
+
+        raw = build_course()
+        source = json.dumps(raw, ensure_ascii=False, sort_keys=True).encode("utf-8")
+        return cls(Course.model_validate(raw), source, strict_counts=True)
 
     @classmethod
     def load_path(cls, path: Path, *, strict_counts: bool = True) -> CourseCatalog:
@@ -183,12 +185,20 @@ class CourseCatalog:
 
             cloze_count = len(objective.cloze_variants)
             translation_count = len(objective.translation_variants)
-            expected = (2, 4) if objective.kind is ObjectiveKind.LEXICAL else (2, 2)
-            if (cloze_count, translation_count) != expected:
-                errors.append(
-                    f"objective {objective.id}: expected {expected[0]} cloze and "
-                    f"{expected[1]} translation variants"
-                )
+            if self.course.version >= 2:
+                # The engine needs two initial recalls. Textbook context counts
+                # are variable; duplicating content to fill a quota is not useful.
+                if cloze_count != 2 or translation_count < 1:
+                    errors.append(
+                        f"objective {objective.id}: expected 2 cloze and at least 1 translation variant"
+                    )
+            else:
+                expected = (2, 4) if objective.kind is ObjectiveKind.LEXICAL else (2, 2)
+                if (cloze_count, translation_count) != expected:
+                    errors.append(
+                        f"objective {objective.id}: expected {expected[0]} cloze and "
+                        f"{expected[1]} translation variants"
+                    )
 
         missing_lexical = sorted(
             concept_id for concept_id in concept_ids if lexical_by_concept[concept_id] != 1
@@ -203,6 +213,14 @@ class CourseCatalog:
             raise CourseValidationError("\n".join(errors))
 
     def _validate_release_counts(self, errors: list[str]) -> None:
+        if self.course.version == 2:
+            expected_units = [f"ty.l{number:02}" for number in range(1, 8)]
+            actual_units = [unit.id for unit in sorted(self.course.units, key=lambda x: x.order)]
+            if actual_units != expected_units:
+                errors.append("expected Teach Yourself lessons 1–7 in order")
+            if not all(unit.notes for unit in self.course.units):
+                errors.append("each textbook lesson must include its source notes")
+            return
         if len(self.course.units) != 10:
             errors.append(f"expected 10 units, found {len(self.course.units)}")
         if len(self.course.concepts) != 100:
@@ -234,13 +252,13 @@ class CourseCatalog:
     def _validate_dependency_order(self, errors: list[str]) -> None:
         concept_order = {concept.id: concept.order for concept in self.course.concepts}
         for objective in self.course.objectives:
-            if not objective.concept_id:
+            if not objective.concept_id or objective.concept_id not in concept_order:
                 continue
             target_order = concept_order[objective.concept_id]
             late = [
                 dependency
                 for dependency in objective.requires_seen
-                if concept_order[dependency] >= target_order
+                if dependency in concept_order and concept_order[dependency] >= target_order
             ]
             if late:
                 errors.append(

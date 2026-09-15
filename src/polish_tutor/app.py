@@ -3,7 +3,7 @@ from __future__ import annotations
 from textual import on
 from textual.app import App, ComposeResult
 from textual.binding import Binding
-from textual.containers import Container, Vertical
+from textual.containers import Container, Vertical, VerticalScroll
 from textual.screen import ModalScreen, Screen
 from textual.widgets import Button, Footer, Input, Label, RadioButton, RadioSet, Static
 
@@ -20,6 +20,7 @@ from polish_tutor.engine import (
     WaitingItem,
 )
 from polish_tutor.models import PromptKind, SelfForm
+from polish_tutor.notes import LessonNotesScreen
 from polish_tutor.scheduling import Clock, format_interval
 
 
@@ -152,6 +153,7 @@ class StudyScreen(Screen[None]):
     BINDINGS = [
         Binding("tab", "hint", "Hint", priority=True),
         Binding("ctrl+r", "reveal", "Reveal", priority=True),
+        Binding("f2", "lesson_notes", "Lesson notes", priority=True),
         Binding("escape", "pause", "Pause", priority=True),
         Binding("ctrl+q", "app.quit", "Quit", priority=True),
     ]
@@ -166,7 +168,7 @@ class StudyScreen(Screen[None]):
 
     def compose(self) -> ComposeResult:
         yield Static("", id="status", markup=False)
-        with Container(id="study-card"):
+        with VerticalScroll(id="study-card"):
             yield Static("", id="phase", markup=False)
             yield Static("", id="context", markup=False)
             yield Static("", id="prompt", markup=False)
@@ -174,7 +176,7 @@ class StudyScreen(Screen[None]):
             yield Input(placeholder="Type Polish here", id="answer")
             yield Static("", id="feedback", markup=False)
         yield Static(
-            "Enter submit/continue  ·  Tab hint  ·  Ctrl+R reveal  ·  Esc pause  ·  Ctrl+Q quit",
+            "Enter submit/continue  ·  Tab hint  ·  F2 notes  ·  Ctrl+R reveal  ·  Esc pause  ·  Ctrl+Q quit",
             id="keys",
             markup=False,
         )
@@ -228,7 +230,9 @@ class StudyScreen(Screen[None]):
             unit = self.engine.catalog.units[self.item.objective.unit_id]
             self.query_one("#phase", Static).update(f"NEW FORM · {unit.title}")
             if variant.kind is PromptKind.TRANSLATION:
-                self.query_one("#context", Static).update(variant.prompt)
+                self.query_one("#context", Static).update(
+                    f"{variant.prompt}\n{variant.context or ''}"
+                )
                 instruction = "Copy the Polish model:"
             else:
                 self.query_one("#context", Static).update(variant.context or "")
@@ -301,6 +305,13 @@ class StudyScreen(Screen[None]):
         result = self.engine.reveal()
         if result:
             self._show_result(result)
+
+    def action_lesson_notes(self) -> None:
+        if isinstance(self.item, (IntroductionItem, FormIntroductionItem, ReviewItem)):
+            # Looking at lesson material is assistance, not a clean recall.
+            self.engine.request_hint()
+            unit = self.engine.catalog.units[self.item.objective.unit_id]
+            self.app.push_screen(LessonNotesScreen(unit))
 
     def action_pause(self) -> None:
         self.app.push_screen(PauseScreen())

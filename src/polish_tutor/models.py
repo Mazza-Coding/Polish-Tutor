@@ -18,6 +18,7 @@ class PartOfSpeech(StrEnum):
     ADVERB = "adverb"
     PREPOSITION = "preposition"
     PARTICLE = "particle"
+    NUMERAL = "numeral"
 
 
 class PromptKind(StrEnum):
@@ -39,6 +40,7 @@ class Unit(FrozenModel):
     id: str
     order: int = Field(ge=1)
     title: str
+    notes: tuple[str, ...] = ()
 
 
 class Concept(FrozenModel):
