@@ -1,0 +1,120 @@
+id: l05
+order: 5
+title: Lesson 5 — Second conjugation and knowing how
+source_pages: book pp. 21–23 (PDF pp. 29–31)
+material:
+- The second conjugation is illustrated by umieć and rozumieć. The lesson also groups wiedzieć, jeść,
+  and znać as verbs whose forms must be learned with their own patterns.
+- 'Wiedzieć combines naturally with question words: wiesz kto/co/które/jakie/czyje/gdzie/kiedy/dlaczego
+  and z iloma. Umieć means to know how to do something through practice or training.'
+- Model phrases include Umiem czytać, Umiem pływać, Umiem śpiewać, and Nie umiem polskiego na dzisiaj.
+- 'Vocabulary: biuro office; idę do I am going to; jeść eat; pływać swim; rozumieć understand; śpiewać
+  sing; umieć know how; wiedzieć know; wracać come back; dlaczego why; gdzie where; kiedy when; już already;
+  może perhaps; pewnie certainly; także also; ładnie nicely; dobrze well.'
+- Speech drill (book p. 23) practises forms such as może/morze, umieć/rozumieć, wiedzieć, jeść, także,
+  dobrze, gdzie, śpiewać, święto and śniadanie.
+sets:
+- slug: into_english
+  label: Translate into English
+  page: book p. 22
+  items:
+  - prompt: What is this child eating?
+    answers:
+    - Co je to dziecko?
+  - prompt: What are these children eating?
+    answers:
+    - Co jedzą te dzieci?
+  - prompt: She understands it.
+    answers:
+    - Ona to rozumie.
+  - prompt: She knows how to do it.
+    answers:
+    - Ona to umie.
+  - prompt: I know that you do not understand this.
+    answers:
+    - Wiem, że tego nie rozumiecie.
+  - prompt: Do you not understand this word?
+    answers:
+    - Nie rozumiesz tego słowa?
+  - prompt: Do you know where the children are? (formal, to a woman)
+    answers:
+    - Czy pani wie, gdzie są dzieci?
+  - prompt: Do you know what he is reading? No, we do not know; we do not understand a word. Perhaps you
+      understand? No, I do not understand either.
+    answers:
+    - Czy wy wiecie, co on czyta? Nie, nie wiemy, nie rozumiemy ani słowa. Może ty rozumiesz? Nie, ja
+      także nie rozumiem.
+  - prompt: I am going to the office. I am coming back from the office.
+    answers:
+    - Idę do biura. Wracam z biura.
+  - prompt: Perhaps you know when Mr Rawicz is coming back from the office? I do not know, but Zosia certainly
+      knows.
+    answers:
+    - Może pani wie, kiedy pan Rawicz wraca z biura? Ja nie wiem, ale Zosia pewnie wie.
+  - prompt: You probably already know whose exercise is the best. (formal, to a man)
+    answers:
+    - Pan już pewnie wie, czyje zadanie jest najlepsze.
+  - prompt: Do you not know how to swim?
+    answers:
+    - Nie umiecie pływać?
+  - prompt: My children already know how to read.
+    answers:
+    - Moje dzieci już umieją czytać.
+  - prompt: She sings very nicely. Hania sings well too.
+    answers:
+    - Ona bardzo ładnie śpiewa. Hania także dobrze śpiewa.
+  - prompt: Do you understand? Yes, I understand. (formal, to a man)
+    answers:
+    - Rozumie pan? Tak, rozumiem.
+  - prompt: Do you not understand? No, I do not understand it. What do you not understand? This exercise.
+      Maryla and Staszek do not understand this exercise either.
+    answers:
+    - Nie rozumie pani? Nie, nie rozumiem tego. Czego pani nie rozumie? Tego zadania. Maryla i Staszek
+      także nie rozumieją tego zadania.
+- slug: into_polish
+  label: Translate into Polish
+  page: book pp. 22–23
+  items:
+  - prompt: This child does not know how to swim.
+    answers:
+    - To dziecko nie umie pływać.
+  - prompt: When is he coming back? I do not know when.
+    answers:
+    - Kiedy on wraca? Nie wiem, kiedy.
+    - Kiedy wraca? Nie wiem, kiedy.
+  - prompt: Does he already know that she is coming back today? He does not know, but Staszek and Maryla
+      know.
+    answers:
+    - Czy on już wie, że ona wraca dzisiaj? Nie wie, ale Staszek i Maryla wiedzą.
+  - prompt: 'We are having breakfast. (literally: eating breakfast)'
+    answers:
+    - Jemy śniadanie.
+  - prompt: Why do you not know this?
+    answers:
+    - Dlaczego tego nie wiesz?
+  - prompt: They (men) eat; they know. They (women) understand it; they know how to do it.
+    answers:
+    - Oni jedzą, oni wiedzą. One to rozumieją; one to umieją.
+  - prompt: When is Staszek coming back from the office?
+    answers:
+    - Kiedy Staszek wraca z biura?
+  - prompt: Do you know where the butter is? No, I do not know, but Zosia certainly knows. No, she does
+      not know either. Perhaps the children know. No, they do not know.
+    answers:
+    - Czy wiesz, gdzie jest masło? Nie, nie wiem, ale Zosia pewnie wie. Nie, ona także nie wie. Może dzieci
+      wiedzą. Nie, nie wiedzą.
+  - prompt: Who is singing? We are singing.
+    answers:
+    - Kto śpiewa? My śpiewamy.
+  - prompt: Why are you not singing? (formal, to a woman)
+    answers:
+    - Dlaczego pani nie śpiewa?
+  - prompt: I know — you also already know. (familiar singular)
+    answers:
+    - Wiem — ty także już wiesz.
+  - prompt: When are the children coming back?
+    answers:
+    - Kiedy dzieci wracają?
+  - prompt: She does not know; she does not remember.
+    answers:
+    - Ona nie wie, nie pamięta.
