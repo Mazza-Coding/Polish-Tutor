@@ -1,0 +1,131 @@
+id: l01
+order: 1
+title: Lesson 1 — Neuter nouns, adjectives, and numbers 1–4
+source_pages: book pp. 7–10 (PDF pp. 15–18)
+material:
+- Neuter nouns ending in -o or -e use the same form in the nominative, vocative, and accusative singular.
+- 'A neuter adjective agrees with its noun: forms such as nowe pióro, głębokie morze, dobre dziecko, duże
+  pole. The demonstratives are to and tamto; the numeral adjective is jedno.'
+- In the plural, neuter nouns in -o/-e normally take -a; dziecko has the irregular plural dzieci. Adjectives
+  take -e; to/tamto become te/tamte.
+- The lesson introduces dwa, trzy, cztery and the collective forms dwoje, troje, czworo with dzieci.
+- 'Vocabulary: dziecko child; okno window; morze sea; pióro pen; pole field; pudełko box; dobre good;
+  duże large; głębokie deep; małe small; moje my/mine; nowe new; jest is; są are; mam I have; kocham I
+  love; to this/that; tamto that over there.'
+- 'Speech drill (book p. 10): pióro, biuro, piorą, biura, duże, morze, małe, pole, moje, jedno, jest,
+  dziecko, dzieci, są; plus g/cz/trz pronunciation practice.'
+sets:
+- slug: read_translate
+  label: Read and translate
+  page: book p. 8
+  items:
+  - prompt: This is a pen.
+    answers:
+    - To jest pióro.
+  - prompt: This is my new pen.
+    answers:
+    - To jest moje nowe pióro.
+  - prompt: I have a new pen.
+    answers:
+    - Mam nowe pióro.
+  - prompt: I have one new pen.
+    answers:
+    - Mam jedno nowe pióro.
+  - prompt: The child is small.
+    answers:
+    - Dziecko jest małe.
+  - prompt: This child is small.
+    answers:
+    - To dziecko jest małe.
+  - prompt: My child!
+    answers:
+    - Moje dziecko!
+  - prompt: I love this child.
+    answers:
+    - Kocham to dziecko.
+- slug: into_english
+  label: Translate into English
+  page: book p. 9
+  items:
+  - prompt: This field is small; that one is large.
+    answers:
+    - To pole jest małe, tamto jest duże.
+  - prompt: These fields are small; those are large.
+    answers:
+    - Te pola są małe, tamte są duże.
+  - prompt: I have good children.
+    answers:
+    - Mam dobre dzieci.
+  - prompt: Oh, my children!
+    answers:
+    - O moje dzieci!
+  - prompt: A good child.
+    answers:
+    - Dobre dziecko.
+  - prompt: I love children.
+    answers:
+    - Kocham dzieci.
+  - prompt: I have a box.
+    answers:
+    - Mam pudełko.
+  - prompt: I have one box.
+    answers:
+    - Mam jedno pudełko.
+  - prompt: I have one small box.
+    answers:
+    - Mam jedno małe pudełko.
+  - prompt: I have three new boxes.
+    answers:
+    - Mam trzy nowe pudełka.
+  - prompt: A deep sea.
+    answers:
+    - Głębokie morze.
+  - prompt: This one pen is good.
+    answers:
+    - To jedno pióro jest dobre.
+  - prompt: This pen.
+    answers:
+    - To pióro.
+  - prompt: These pens.
+    answers:
+    - Te pióra.
+  - prompt: I have these four pens.
+    answers:
+    - Mam te cztery pióra.
+  - prompt: One window is large; two are small.
+    answers:
+    - Jedno okno jest duże, dwa są małe.
+  - prompt: These two boxes are mine.
+    answers:
+    - Te dwa pudełka są moje.
+  - prompt: My box is small.
+    answers:
+    - Moje pudełko jest małe.
+- slug: into_polish
+  label: Translate into Polish
+  page: book p. 9
+  items:
+  - prompt: These two pens are good.
+    answers:
+    - Te dwa pióra są dobre.
+  - prompt: This field is large.
+    answers:
+    - To pole jest duże.
+  - prompt: I have small children.
+    answers:
+    - Mam małe dzieci.
+  - prompt: I have one child.
+    answers:
+    - Mam jedno dziecko.
+  - prompt: I have four children.
+    answers:
+    - Mam czworo dzieci.
+  - prompt: The sea is deep.
+    answers:
+    - Morze jest głębokie.
+  - prompt: This is my window.
+    answers:
+    - To jest moje okno.
+  - prompt: My good children!
+    answers:
+    - Moje dobre dzieci!
