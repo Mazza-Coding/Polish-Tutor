@@ -1,0 +1,120 @@
+id: l04
+order: 4
+title: Lesson 4 — Neuter genitive and its functions
+source_pages: book pp. 17–20 (PDF pp. 25–28)
+material:
+- 'The genitive singular of neuter nouns normally takes -a: pióra, morza, święta, dziecka.'
+- The genitive expresses possession, replaces the accusative direct object after negation, follows verbs
+  such as szukać and słuchać, and follows quantity expressions such as dużo and mało.
+- Prepositions introduced with the genitive include od, do, dla, koło, and z/ze. A neuter adjective or
+  pronoun in the genitive singular takes -ego; kto/co have kogo/czego.
+- 'Vocabulary: biurko writing-desk; drzewo tree/wood; jajko egg; masło butter; mleko milk; szkło glass;
+  opowiadanie tale; dużo much; mało little; chować put away; słuchać listen; szukać look for; znać know.'
+- Speech drill (book p. 20) practises ż/rz, drze-, słuchać, chować, znać and the voicing of od/z before
+  following sounds.
+sets:
+- slug: into_english
+  label: Translate into English
+  page: book p. 19
+  items:
+  - prompt: Whose exercise is the best? The exercise of that small child is the best.
+    answers:
+    - Czyje zadanie jest najlepsze? Zadanie tego małego dziecka jest najlepsze.
+  - prompt: Who knows this word?
+    answers:
+    - Kto zna to słowo?
+  - prompt: Who does not know this word?
+    answers:
+    - Kto nie zna tego słowa?
+  - prompt: Whom do you not know here? (formal, to a woman)
+    answers:
+    - Kogo pani tu nie zna?
+  - prompt: For whom are these apples?
+    answers:
+    - Dla kogo są te jabłka?
+  - prompt: I have butter and eggs, but I have no milk for the child for breakfast.
+    answers:
+    - Mam masło i jajka, ale nie mam mleka dla dziecka na śniadanie.
+  - prompt: I do not know this periodical.
+    answers:
+    - Nie znam tego pisma.
+  - prompt: We have very little wood.
+    answers:
+    - Mamy bardzo mało drzewa.
+  - prompt: The writing-desk is made of wood.
+    answers:
+    - Biurko jest zrobione z drzewa.
+  - prompt: The windows are made of wood and glass.
+    answers:
+    - Okna są zrobione z drzewa i ze szkła.
+  - prompt: This apple is from our tree.
+    answers:
+    - To jabłko jest z naszego drzewa.
+  - prompt: Which periodical are you looking for? (formal, to a man)
+    answers:
+    - Którego pisma pan szuka?
+  - prompt: I put the pen away into the box.
+    answers:
+    - Chowam pióro do pudełka.
+  - prompt: I take the box from the writing-desk.
+    answers:
+    - Biorę pudełko z biurka.
+  - prompt: Much butter, much milk. A large egg, a large tree.
+    answers:
+    - Dużo masła, dużo mleka. Duże jajko, duże drzewo.
+  - prompt: The children listen to the tale.
+    answers:
+    - Dzieci słuchają opowiadania.
+  - prompt: Whom are you looking for? (formal, to a woman)
+    answers:
+    - Kogo pani szuka?
+  - prompt: What are you looking for? (formal, to a woman)
+    answers:
+    - Czego pani szuka?
+  - prompt: What are you looking for? (familiar singular)
+    answers:
+    - Czego szukasz?
+  - prompt: I am looking for this box.
+    answers:
+    - Szukam tego pudełka.
+  - prompt: Which box? Ours?
+    answers:
+    - Którego pudełka? naszego?
+  - prompt: No, not yours, mine.
+    answers:
+    - Nie, nie waszego, mojego.
+- slug: into_polish
+  label: Translate into Polish
+  page: book p. 19
+  items:
+  - prompt: We do not know this new periodical.
+    answers:
+    - Nie znamy tego nowego pisma.
+  - prompt: I am going from the window to the writing-desk.
+    answers:
+    - Idę od okna do biurka.
+  - prompt: Little milk, little butter. Small apple, small flat. Little wood — a small tree.
+    answers:
+    - Mało mleka, mało masła. Małe jabłko, małe mieszkanie. Mało drzewa — małe drzewo.
+  - prompt: What is made of glass? Of wood?
+    answers:
+    - Co jest zrobione ze szkła? Co z drzewa?
+    - Co jest zrobione ze szkła? Z drzewa?
+  - prompt: She is putting the pen away into the box.
+    answers:
+    - Ona chowa pióro do pudełka.
+  - prompt: You know this periodical. (familiar singular)
+    answers:
+    - Znasz to pismo.
+  - prompt: You do not know this periodical. (formal, to a woman)
+    answers:
+    - Pani nie zna tego pisma.
+  - prompt: What is by that tree?
+    answers:
+    - Co jest koło tamtego drzewa?
+  - prompt: For whom are these apples?
+    answers:
+    - Dla kogo są te jabłka?
+  - prompt: The child's tale. From this field.
+    answers:
+    - Opowiadanie dziecka. Z tego pola.
